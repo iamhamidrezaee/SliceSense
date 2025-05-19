@@ -1,0 +1,12 @@
+job_err_SliceSense
+job_out_SliceSense
+
+job_err_SliceSense/*
+job_out_SliceSense/*
+
+SliceSense.sh
+submit_SliceSense.sh
+
+checkpoints
+checkpoints/*
+
