@@ -6,10 +6,10 @@ from glob import glob
 
 # ======== CONFIGURATION ========
 # Folder containing resampled 3D images
-resampled_folder = "/share/sablab/nfs04/users/rs2492/data/nnUNet_preprocessed_DATA/SliceSense/ResampledData_5064"
+resampled_folder = "DATASET_DIR"
 
 # Output folder to store JPEG slices folders
-jpeg_output_folder = "/share/sablab/nfs04/users/rs2492/data/nnUNet_preprocessed_DATA/SliceSense/JPEGData_5064"
+jpeg_output_folder = "OUTPUT_DIR"
 os.makedirs(jpeg_output_folder, exist_ok=True)
 
 # CSV file to store mapping: folder name -> label
@@ -19,8 +19,7 @@ csv_mapping_file = os.path.join(jpeg_output_folder, "jpeg_mapping.csv")
 thickness_to_label = {0.5: 0, 1.0: 1, 2.0: 2, 3.0: 3, 5.0: 4, 7.0: 5}
 
 # Regex to extract the slice thickness from the file name:
-# e.g. "Totalsegmentator_000001_0.5mm.nii.gz" -> group(1) will be "0.5"
-thickness_pattern = re.compile(r"_(\d+(?:\.\d+)?)mm\.nii\.gz$")
+thickness_pattern = re.compile(r"YOUR_SPECIFIC_REGEX_FOR_THICKNESS")
 
 # ======== HELPER FUNCTION TO EXTRACT A 2D SLICE FROM A 3D IMAGE ========
 def extract_slice(image3d, slice_index):

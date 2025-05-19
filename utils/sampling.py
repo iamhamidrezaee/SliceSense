@@ -5,12 +5,12 @@ import SimpleITK as sitk
 from glob import glob
 
 # ======== CONFIGURATION ========
-# Base input directory containing imagesTr and labelsTr
-base_dir = "/share/sablab/nfs04/users/rs2492/data/nnUNet_preprocessed_DATA/SliceSense/Dataset5064_Totalsegmentator"
+# Base input directory
+base_dir = "DATASET_DIR"
 imagesTr_folder = os.path.join(base_dir, "imagesTr")
 
 # Output directory for the resampled 3D images
-output_base = "/share/sablab/nfs04/users/rs2492/data/nnUNet_preprocessed_DATA/SliceSense/ResampledData_5064"
+output_base = "OUTPUT_DIR"
 os.makedirs(output_base, exist_ok=True)
 
 # CSV file for mapping image file names to labels (one number per image)
@@ -20,9 +20,8 @@ csv_mapping_file = os.path.join(output_base, "training_data.csv")
 target_thicknesses = [0.5, 1.0, 2.0, 3.0, 5.0, 7.0]
 thickness_to_label = {0.5: 0, 1.0: 1, 2.0: 2, 3.0: 3, 5.0: 4, 7.0: 5}
 
-# Regular expression to extract patient ID and modality (or slice) index from filename.
-# Example filename: Totalsegmentator_000001_0000.nii.gz 
-pattern = re.compile(r"Totalsegmentator_(\d{6})_(\d{4})\.nii\.gz")
+# Regular expression to extract patient ID and modality (or slice) index from filename (If applicable)
+pattern = re.compile(r"YOUR_DATASET_SPECIFIC_EXPRESSION")
 
 # List to collect mapping tuples (output_filename, label)
 mapping_list = []
@@ -112,7 +111,7 @@ for patient_id, files in patient_files.items():
 
         # ======== STEP 4: Save the Resampled Volume ==========
         thickness_str = f"{target_thickness}mm"
-        output_filename = f"Totalsegmentator_5064_{patient_id}_{thickness_str}.nii.gz"
+        output_filename = f"{patient_id}_{thickness_str}.nii.gz"
         output_path = os.path.join(output_base, output_filename)
         try:
             sitk.WriteImage(resampled_volume, output_path)
