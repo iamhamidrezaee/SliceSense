@@ -10,3 +10,7 @@ submit_SliceSense.sh
 checkpoints
 checkpoints/*
 
+unified_processing.log
+
+SliceSense_Unified_Dataset
+SliceSense_Unified_Dataset/*
